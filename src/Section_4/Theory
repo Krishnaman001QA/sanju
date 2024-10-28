@@ -1,0 +1,130 @@
+1. Rest Assured Works on three principles
+given(), when(). then()
+
+given() :- So basically, What All details, you are giving for an API, those Should be Wrappe under 
+			given() method. So given() method will take all the inputs details. what you need to submit for an API
+
+In When() :- Submit and hit the API. Resource and http method comes under when() method
+
+In then() :- Validate the response
+
+
+
+import static io.restassured.RestAssured.*;
+import static io.restassured.matcher.RestAssuredMatchers.*;
+import static org.hamcrest.Matchers.*;
+
+
+
+
+Rest Assured interview questions:
+
+Basic Questions
+
+Questions :- What is Rest Assured, and how is it used in API testing?
+
+Answer: Rest Assured is a Java library used for testing RESTful web services. It simplifies the 
+process of validating REST APIs by providing an easy-to-use interface for sending HTTP requests and 
+asserting responses. It is often used in automation testing for APIs.
+ 
+Questions :-What does the given(), when(), and then() structure represent in Rest Assured?
+
+Answer: In Rest Assured, given() sets up the request (such as headers, parameters, and body), when() 
+executes the request (GET, POST, etc.), and then() is used to define response validation or 
+assertions (status code, response body, etc.).
+
+
+Questions :-What is the purpose of using RestAssured.baseURI in the code?
+
+Answer: RestAssured.baseURI sets the base URI for the RESTful API you are testing. It allows you 
+to specify the root URL once, so you don’t need to repeat it in every request.
+
+
+Questions :-Explain how to set query parameters and headers in Rest Assured.
+
+Answer: Query parameters are set using the queryParam() method, which is appended to the URL in a 
+GET request. Headers are set using the header() method, which sends the necessary HTTP headers with 
+the request, such as authentication tokens or content type.
+Code-Specific Questions
+
+
+Questions :-What is the significance of the queryParam() method in the code? How does it affect the 
+request?
+
+Answer: The queryParam() method is used to send query parameters along with the request. It appends 
+key-value pairs to the request URL, allowing the server to filter or modify the response based on 
+the parameters.
+
+
+Questions :-In the code, what does the header() method do, and why is it important?
+
+Answer: The header() method sets HTTP headers for the request. Headers provide meta-information 
+about the request, such as the content type or authorization credentials, making them essential 
+for handling different data formats and secured APIs.
+
+
+Questions :-Explain the use of the .body() method in this Rest Assured script. How is the 
+JSON request body being handled?
+
+Answer: The .body() method is used to send data in the request body. In this case, it 
+handles the JSON payload by sending it as part of the request, typically for POST, PUT, 
+or PATCH requests where data needs to be sent to the server.
+
+
+
+Questions :-Why is .log().all() used in this code? What information does it log?
+
+Answer: .log().all() logs the details of the request and response, including the URI, 
+parameters, headers, request body, status code, and response body. It’s useful for debugging and 
+understanding what the API returned during execution.
+Assertion-Based Questions
+
+
+Questions :-How does statusCode(201) work in Rest Assured? Why are status codes important in 
+API testing?
+
+Answer: statusCode(201) asserts that the response from the server should have an HTTP status 
+code of 201, which typically indicates that a resource was successfully created. Status codes 
+are critical in API testing because they provide insight into the success or failure of the request.
+
+
+Questions :-How can we assert more complex responses (e.g., response body content or headers) 
+using Rest Assured?
+
+Answer: In Rest Assured, you can use the body() method with JSONPath or XMLPath expressions 
+to validate specific fields in the response body. Similarly, headers can be validated using 
+the header() method to assert if certain headers like Content-Type or Location are present in 
+the response.
+
+
+
+Advanced Scenario-Based Questions
+
+Questions :-How would you handle dynamic data in the request body instead of hardcoded values?
+
+Answer: To handle dynamic data, you can create variables or use data-driven testing frameworks 
+like TestNG or JUnit. You can pass values dynamically through parameterized methods, external 
+files (JSON/XML), or databases.
+
+
+Questions :-If the API returns a large JSON response, how can you extract specific fields from 
+the response in Rest Assured?
+
+Answer: You can use JSONPath to navigate through the JSON response and extract specific fields. 
+For example, you can use response.jsonPath().get("data.fieldName") to extract a particular field 
+from the JSON response.
+
+
+Questions :-How would you test an API that returns different response formats like XML or JSON?
+
+Answer: Rest Assured supports both JSON and XML response formats. You can set the content type in the 
+headers and use the appropriate methods (jsonPath() for JSON or xmlPath() for XML) to parse and 
+validate the response.
+
+
+Questions :-How would you handle API authentication in Rest Assured? Can you integrate OAuth 2.0 
+with Rest Assured?
+
+Answer: Rest Assured supports basic authentication using the auth() method, and you can pass the 
+credentials via preemptive().basic(). For OAuth 2.0, you can use auth().oauth2("accessToken") to 
+include the access token in the request header.

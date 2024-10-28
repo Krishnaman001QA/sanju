@@ -1,0 +1,29 @@
+Advanced payload Creation Strategies:
+1. Dynamically build json payload with external data inputs
+2. Parameterize the API tests With multiple Data Sets
+3. How to Send Static Json Files(Payload) directly into Post method of rest assured
+4. Feed Json Payload from using Excel using Hashmap
+
+How to store static json file
+We can given json payload by inside the Test or inside any reusable file or with external json file
+
+
+
+Sample Body Store in System Folder = "C:\Users\Fleek\Downloads\Rahul-Shetti\Java-RestAssured\addPlace.json.txt"
+
+{
+  "location": {
+    "lat": -38.383494,
+    "lng": 33.427362
+  },
+  "accuracy": 50,
+  "name": "Himanshu Sharma",
+  "phone_number": "(+91) 983 893 3937",
+  "address": "29, side layout, cohen 09",
+  "types": [
+    "shoe park",
+    "shop"
+  ],
+  "website": "http://rahulshettyacademy.com",
+  "language": "French-IN"
+}

@@ -1,0 +1,67 @@
+What is Gherkin ?
+Gherkin is a domain-specific language (DSL) used for writing structured tests that can be understood by both technical and non-technical 
+stakeholders. It is primarily used in Behavior-Driven Development (BDD) frameworks like Cucumber, where the focus is on defining tests 
+in a business-readable, natural language format.
+
+
+Keywords used in Cucumber : Scenario, feature, Feature file, scenario outline, step definition
+
+Scenario : In Cucumber Testcases are represented as Scenarios.
+			Scenarios Contain Steps which are equivqlent to test steps and use the following keywords(Gherkin Syntax) 
+			to denote them: Given, When, Then, But, and And(case sensitive)
+			
+			Given : Precondition are mentioned in the given keyword
+			When  : The purpose of when steps is to describe the user action.
+			Then  : The purpose of Then Steps is to observe the expected output. The observations should be related to the business 
+					value/benefit of your Feature Description
+					
+			Example Scenario :
+			
+			Given user is on Pay Credit Card Page
+			When User Fills al details and Selected Minimum amount option
+			And User clicks on Pay button
+			
+			Then Credit Card Confirmation Page is displayed 		
+			And If reference number is displayed		
+			But error Message is not displaying		
+					
+			We are going to add one more Scenario and will use the And and But keywords:
+				And: This is used for Statements that are an addition to the previous steps and represent positive statements
+				But: This used for Statements that are an addition to previous steps and represent negative statements
+	
+Feature and Feature File:
+			Feature represent Business Requirement.
+			Feature File Act as a test Suite Which Consist of all Scenarios.
+			
+			
+			In Cucumber, Feature file contain Scenarios. We can Simply create feature file with .feature extension
+			scenarios belonging to specific area of application will be grouped into one Feature file
+			
+			
+			The text that immediately follows the Featured Keyword, and is in the same line, Is the Title of the Feature File
+			
+			Feature File should contain either Scenario or Scenario outline. the naming convention for Feature File Should be 
+			lower case with .feature Extention
+			
+			
+Question : What is Maven project?	Section-76 in starting see video		
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							

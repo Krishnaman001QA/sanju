@@ -1,0 +1,77 @@
+package Section_7;
+
+import static io.restassured.RestAssured.*;
+import static io.restassured.matcher.RestAssuredMatchers.*;
+import static org.hamcrest.Matchers.*;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+import org.testng.Assert;
+
+import Files.ReUsableMethods;
+import Files.payload;
+import io.restassured.RestAssured;
+import io.restassured.path.json.JsonPath;
+
+public class basics {
+
+	public static void main(String[] args) throws IOException {
+
+//		3. How to Send Static Json Files(Payload) directly into Post method of rest assured
+
+		RestAssured.baseURI = "https://rahulshettyacademy.com/";
+
+		String response = given().log().all().queryParam("key", "qaclick123").header("Content-Type", "application/json")
+				.body(new String(Files.readAllBytes(
+						Paths.get("C:\\Users\\Fleek\\Downloads\\Rahul-Shetti\\Java-RestAssured\\addPlace.json"))))
+
+				.when().post("maps/api/place/add/json").
+
+				then().assertThat().statusCode(200).body("scope", equalTo("APP"))
+				.header("Server", equalTo("Apache/2.4.52 (Ubuntu)"))
+
+				/*
+				 * Add Place-> Update Place with New Address -> Get Place to validate if new
+				 * Address is present in response or not
+				 */
+
+				.extract().response().asString();
+
+		System.out.println(response); // response body will print
+
+		JsonPath js = new JsonPath(response); // JsonPath is the one which takes string as an input and convert that
+												// into Json
+		String placeID = js.getString("place_id");
+		System.out.println(placeID);
+
+		// Update Place
+		String address = "Faridavad";
+		given().log().all().queryParam("key", "qaclick123").header("Content-Type", "application/json")
+				.body("{\r\n" + "    \"place_id\": \"" + placeID + "\",\r\n" + "    \"address\": \"" + address
+						+ "\",\r\n" + "    \"key\": \"qaclick123\"\r\n" + "}")
+
+				.when().put("maps/api/place/update/json")
+
+				.then().assertThat().log().all().statusCode(200).body("msg", equalTo("Address successfully updated"));
+
+		// Get Place/Location
+		String getadd = given().log().all().queryParam("key", "qaclick123").queryParam("place_id", placeID)
+
+				.when().get("/maps/api/place/get/json")
+
+				.then().assertThat().log().all().statusCode(200).extract().response().asString();
+
+		// JsonPath jjs =new JsonPath(getadd);
+		JsonPath js1 = ReUsableMethods.rawtojson(getadd);
+		String vAdd = js1.getString("address");
+
+		System.out.println(vAdd);
+
+		Assert.assertEquals(vAdd, address);
+
+	}
+
+}
